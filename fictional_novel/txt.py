@@ -1,14 +1,12 @@
 import requests
 from bs4 import BeautifulSoup
-import time
-import random
-
+#
 def get_file(url):
     req = requests.get(url)
     soup = BeautifulSoup(req.text, 'html.parser')
     book_list = soup.div(id = 'list')
     return book_list
-
+#
 def downloader(book_list):
     title = './' + book_list[0].dl.dt.string
     with open(title + '.txt','w') as file:
@@ -23,7 +21,6 @@ def downloader(book_list):
             file.write(text)
             print('ok')
         print('done ')
-if __name__ == '__main__':
-    downloader(get_file('https://www.biqugee.com/book/30887/'))
-
+# the link you want to add
+downloader(get_file('https://www.biqugee.com/book/26212/'))
 
